@@ -1,20 +1,11 @@
-import {SET_FILTER,ADD_EVENT,FETCH_EVENTS_PENDING,FETCH_EVENTS_SUCCESS,FETCH_EVENTS_ERROR, ADD_TODO, TOGGLE_TODO } from "./actionTypes";
+import {SET_FILTER,ADD_EVENT,TOGGLE_EVENT,FETCH_EVENTS_PENDING,FETCH_EVENTS_SUCCESS,FETCH_EVENTS_ERROR } from "./actionTypes";
 
 let nextEventId =0;
-let nextTodoId = 0;
 
 export const setFilter = filter => ({ type: SET_FILTER, payload: { filter } });
 
-export const addTodo = content => ({
-    type: ADD_TODO,
-    payload: {
-        id: ++nextTodoId,
-        content
-    }
-})
-
-export const toggleTodo = id => ({
-    type: TOGGLE_TODO,
+export const toggleEvent = id => ({
+    type: TOGGLE_EVENT,
     payload: { id }
   });
 

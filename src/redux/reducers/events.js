@@ -1,4 +1,4 @@
-import { ADD_EVENT,FETCH_EVENTS_PENDING, FETCH_EVENTS_SUCCESS, FETCH_EVENTS_ERROR  } from "../actionTypes";
+import { ADD_EVENT, TOGGLE_EVENT, FETCH_EVENTS_PENDING, FETCH_EVENTS_SUCCESS, FETCH_EVENTS_ERROR } from "../actionTypes";
 
 const initialState = {
   allIds: [],
@@ -22,32 +22,41 @@ export default function (state = initialState, action) {
             chosen: false
           }
         }
-      };
+      }
+    }
+    case TOGGLE_EVENT: {
+      const { id} = action.payload;
+      return {
+        ...state,
+        byIds: {
+          ...state.byIds,
+          [id]: {
+            ...state.byIds[id],
+            completed: !state.byIds[id].completed
+          }
+        }
+      }
     }
 
-    case FETCH_EVENTS_PENDING: 
-            return {
-                ...state,
-                pending: true
-            }
-        case FETCH_EVENTS_SUCCESS:
-            return {
-                ...state,
-                pending: false,
-                fetchItems: action.payload
-            }
-        case FETCH_EVENTS_ERROR:
-            return {
-                ...state,
-                pending: false,
-                error: action.error
-            }
+  case FETCH_EVENTS_PENDING:
+      return {
+        ...state,
+        pending: true
+      }
+    case FETCH_EVENTS_SUCCESS:
+      return {
+        ...state,
+        pending: false,
+        fetchItems: action.payload
+      }
+    case FETCH_EVENTS_ERROR:
+      return {
+        ...state,
+        pending: false,
+        error: action.error
+      }
 
     default:
       return state;
   }
 }
-
-// export const getEvents = state => state.events;
-// export const getEventsPending = state => state.pending;
-// export const getEventsError = state => state.error;

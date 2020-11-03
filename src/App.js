@@ -6,7 +6,7 @@ import AddEvent from "./components/AddEvent";
 export default function App() {
     return (
         <>
-                        <h1>Lists</h1>
+           <h1>Lists</h1>
             <Eventlist />
             <AddEvent />
         </>
