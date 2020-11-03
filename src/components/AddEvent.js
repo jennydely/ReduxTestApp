@@ -25,8 +25,7 @@ function AddEvent(props) {
     }
 }
 
-
-export default connect(
-    null,
+const mapStateToProps = state => state.partOfState
+export default connect(mapStateToProps,
     { addEvent }
 )(AddEvent)
